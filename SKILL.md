@@ -1,11 +1,11 @@
 ---
 name: test-case-generator
-description: "Use when the user asks to generate test cases, write tests, create unit tests, add test coverage, or test a function/module/file. Also use when the user asks to generate test cases from requirements docs, PRD, user stories, API specs, or design documents. Supports two modes: code-driven (analyze source code) and requirement-driven (analyze docs). Also trigger on 'test this', 'write tests for', 'generate tests', 'add tests', '根据需求生成测试', '从文档生成测试用例'."
+description: "当用户要求生成测试用例、编写测试、添加测试覆盖率、测试某个函数/模块/文件时使用。也支持从需求文档、PRD、用户故事、API 文档、设计文档生成测试用例。支持两种模式：代码驱动（分析源代码）和需求驱动（分析文档）。触发词：'测试这个'、'写测试'、'生成测试'、'添加测试'、'根据需求生成测试'、'从文档生成测试用例'、'test this'、'write tests for'、'generate tests'。"
 ---
 
-# Test Case Generator
+# 测试用例生成器
 
-Generate comprehensive test suites from **source code** or **requirement documents**. Auto-detects language, framework, and test runner from the project.
+从**源代码**或**需求文档**生成全面的测试套件。自动检测项目语言、测试框架和运行器。
 
 ## Two Modes
 

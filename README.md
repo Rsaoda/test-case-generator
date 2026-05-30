@@ -1,34 +1,34 @@
-# Test Case Generator - Claude Code Skill
+# 测试用例生成器 - Claude Code Skill
 
-A Claude Code skill that generates comprehensive test suites from **source code** or **requirement documents**. Supports multiple languages and frameworks with intelligent auto-detection.
+一个 Claude Code 技能，从**源代码**或**需求文档**生成全面的测试套件。支持多种语言和框架，智能自动检测。
 
-## Two Modes
+## 两种模式
 
-| Mode | Input | Output |
-|------|-------|--------|
-| **Code-Driven** | Source file (`.ts`, `.py`, `.go`, etc.) | Runnable unit/integration test code |
-| **Requirement-Driven** | Doc file (`.md`, `.txt`, `.pdf`, Swagger/OpenAPI) | Structured test case table + optional runnable code |
+| 模式 | 输入 | 输出 |
+|------|------|------|
+| **代码驱动** | 源代码文件（`.ts`、`.py`、`.go` 等） | 可运行的单元/集成测试代码 |
+| **需求驱动** | 文档文件（`.md`、`.txt`、`.pdf`、Swagger/OpenAPI） | 结构化测试用例表 + 可选的可运行代码 |
 
-## What It Generates
+## 生成内容
 
-### From Code
-- **Happy path tests** — valid inputs, expected outputs
-- **Boundary tests** — empty values, edge numbers, single-element collections
-- **Error tests** — invalid types, null inputs, missing parameters
-- **Edge cases** — concurrency, idempotency, side effects
-- **Integration tests** — module interactions with proper mocking
+### 从代码生成
+- **正向功能测试** — 有效输入、预期输出
+- **边界测试** — 空值、边界数字、单元素集合
+- **异常测试** — 无效类型、空输入、缺少参数
+- **边界情况** — 并发调用、幂等性、副作用
+- **集成测试** — 模块交互、依赖模拟
 
-### From Requirements
-- **Functional tests** — core functionality verification
-- **Validation tests** — required fields, format, length, type checks
-- **Business rule tests** — permissions, state transitions, calculations
-- **Negative tests** — unauthorized access, not found, conflict scenarios
-- **User journey tests** — end-to-end workflows across features
+### 从需求文档生成
+- **功能测试** — 核心功能验证
+- **数据验证测试** — 必填字段、格式、长度、类型校验
+- **业务规则测试** — 权限控制、状态流转、计算规则
+- **异常场景测试** — 未授权访问、资源不存在、冲突场景
+- **用户旅程测试** — 跨功能的端到端流程
 
-## Supported Languages & Frameworks
+## 支持的语言和框架
 
-| Language | Frameworks |
-|----------|-----------|
+| 语言 | 测试框架 |
+|------|---------|
 | JavaScript / TypeScript | Jest, Vitest, Mocha |
 | Python | pytest, unittest |
 | Go | go test |
@@ -37,42 +37,42 @@ A Claude Code skill that generates comprehensive test suites from **source code*
 | C# | xUnit, NUnit |
 | E2E | Playwright, Cypress |
 
-## Installation
+## 安装
 
-### Via Skills CLI
+### 通过 Skills CLI
 ```bash
 npx skills add rullerzhou-afk/test-case-generator@test-case-generator -g -y
 ```
 
-### Manual Installation
+### 手动安装
 ```bash
-git clone https://github.com/rullerzhou-afk/test-case-generator.git ~/.claude/skills/test-case-generator
+git clone https://github.com/Rsaoda/test-case-generator.git ~/.claude/skills/test-case-generator
 ```
 
-## Usage
+## 使用方式
 
-### Code-Driven (分析代码生成测试)
-
-```
-Write tests for src/utils/parser.ts
-```
+### 代码驱动（分析代码生成测试）
 
 ```
-Generate test cases for the UserService class
+给 src/utils/parser.ts 写测试
 ```
 
 ```
-Add unit tests for the calculateDiscount function
+为 UserService 类生成测试用例
 ```
 
-### Requirement-Driven (从需求文档生成测试用例)
+```
+给 calculateDiscount 函数添加单元测试
+```
+
+### 需求驱动（从需求文档生成测试用例）
 
 ```
 根据 docs/requirements.md 生成测试用例
 ```
 
 ```
-Generate test cases from the PRD document at docs/prd.md
+从 PRD 文档生成测试用例
 ```
 
 ```
@@ -83,27 +83,27 @@ Generate test cases from the PRD document at docs/prd.md
 根据用户故事生成测试用例
 ```
 
-The skill auto-detects the input type and switches mode accordingly.
+技能会自动检测输入类型并切换对应模式。
 
-## How It Works
+## 工作流程
 
-### Code-Driven Flow
-1. **Detect Stack** — Scans `package.json`, `requirements.txt`, `go.mod`, etc.
-2. **Find Conventions** — Identifies existing test file naming patterns
-3. **Analyze Code** — Extracts functions, classes, routes, exports
-4. **Generate Tests** — Creates tests following AAA pattern (Arrange-Act-Assert)
-5. **Output** — Writes test file and provides a summary
+### 代码驱动流程
+1. **检测技术栈** — 扫描 `package.json`、`requirements.txt`、`go.mod` 等
+2. **识别命名规范** — 发现已有测试文件的命名模式
+3. **分析代码** — 提取函数、类、路由、导出
+4. **生成测试** — 按 AAA 模式（准备-执行-断言）创建测试
+5. **输出** — 写入测试文件并提供摘要
 
-### Requirement-Driven Flow
-1. **Parse Document** — Reads markdown, text, PDF, or Swagger/OpenAPI files
-2. **Extract Requirements** — Identifies functional requirements, business rules, acceptance criteria
-3. **Classify Scenarios** — Groups into functional, validation, boundary, business rule, negative, journey
-4. **Generate Test Cases** — Outputs structured test case table with steps and expected results
-5. **Optional Code** — Can also generate runnable test code if framework is detected
+### 需求驱动流程
+1. **解析文档** — 读取 Markdown、纯文本、PDF 或 Swagger/OpenAPI 文件
+2. **提取需求** — 识别功能需求、业务规则、验收标准
+3. **分类场景** — 归类为功能、验证、边界、业务规则、异常、用户旅程
+4. **生成测试用例** — 输出包含步骤和预期结果的结构化测试用例表
+5. **可选生成代码** — 如检测到测试框架，可同时生成可运行的测试代码
 
-## Example: Code-Driven
+## 示例：代码驱动
 
-Input:
+输入：
 ```javascript
 function divide(a, b) {
   if (b === 0) throw new Error("Division by zero");
@@ -111,7 +111,7 @@ function divide(a, b) {
 }
 ```
 
-Output:
+输出：
 ```javascript
 describe('divide', () => {
   it('should return correct quotient for positive numbers', () => {
@@ -128,12 +128,12 @@ describe('divide', () => {
 });
 ```
 
-## Example: Requirement-Driven
+## 示例：需求驱动
 
-Input (PRD excerpt):
+输入（PRD 摘录）：
 > 用户注册功能：邮箱格式校验，密码不少于8位，注册成功发送验证邮件
 
-Output:
+输出：
 ```markdown
 # 测试用例: 用户注册
 
@@ -166,6 +166,6 @@ Output:
 - **优先级**: P1
 ```
 
-## License
+## 许可证
 
 MIT
